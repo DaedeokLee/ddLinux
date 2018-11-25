@@ -1,2 +1,3 @@
-#/bin/bash
+set -o vi
+
 alias ll='ls -la'
