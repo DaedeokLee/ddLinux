@@ -1,6 +1,6 @@
 #/bin/bash
 RSK_NETWROK="testnet" ## mainnet | testnet | regtest
-RSK_RPC_IP="35.243.120.240"
+RSK_RPC_IP="localhost"
 RSK_RPC_PORT="4444"
 
 
