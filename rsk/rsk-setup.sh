@@ -1,7 +1,7 @@
 #/bin/bash
 RSK_NETWROK="testnet" ## mainnet | testnet | regtest
-RSK_RPC_IP="localhost"
-RSK_RPC_PORT="4444"
+RSK_RPC_IP="13.124.224.191"
+RSK_RPC_PORT="8040"
 
 
 sudo add-apt-repository ppa:webupd8team/java
