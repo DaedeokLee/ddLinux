@@ -1,0 +1,27 @@
+version: '2'
+services:
+  rsk:
+    build: rsk-node
+    restart: on-failure
+    container_name: bootstrap
+    hostname: bootstrap
+    links:
+      - netstats
+    entrypoint: /root/start.sh
+    command: '/usr/bin/supervisord'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "30303+:30303"
+      - "30303+:30303/udp"
+      - "8545+:8545"
+  netstats:
+    build: rsk-stats
+    restart: on-failure
+    container_name: rsk-stats
+    environment:
+      - WS_SECRET=oracle
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000+:3000"
