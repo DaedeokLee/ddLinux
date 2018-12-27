@@ -1,9 +1,12 @@
-FROM mhart/alpine-node:latest
+FROM node:10.15
 
-ADD . /stats
+RUN git clone https://github.com/rsksmart/stats.git
+RUN cd stats
 WORKDIR /stats
 
-RUN npm install && npm install -g grunt-cli && grunt
+RUN npm install 
+RUN npm install -g grunt-cli 
+RUN grunt
 
 ENV WS_SECRET oracle
 EXPOSE 3000

@@ -1,7 +1,7 @@
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install linux-image-extra-4.4.0–59-generic linux-image-extra-virtual
-sudo apt-get install \
+sudo apt-get install -y linux-image-extra-4.4.0–59-generic linux-image-extra-virtual
+sudo apt-get install -y \
  apt-transport-https \
  ca-certificates \
  curl \
@@ -13,8 +13,8 @@ sudo add-apt-repository \
  $(lsb_release -cs) \
  stable”
 sudo apt-get update
-sudo apt-get install docker-ce
-sudo apt-get install docker-compose
+sudo apt-get install -y docker-ce
+sudo apt-get install -y docker-compose
 
 sudo groupadd docker
 sudo usermod -aG docker $USER

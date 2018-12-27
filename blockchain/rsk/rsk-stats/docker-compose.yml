@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rsk-stats:
+    build: ./
+    restart: on-failure
+    environment:
+      - WS_SECRET=oracle
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"

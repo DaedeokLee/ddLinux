@@ -1,0 +1,20 @@
+version: '3'
+services:
+  rsk-node:
+    build: .
+    restart: on-failure
+    hostname: rsk-node
+    extra_hosts: 
+      - "rsk-stats:172.19.0.2"
+    entrypoint: /root/start.sh
+    command: '/usr/bin/supervisord'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "30303:30303"
+      - "30303:30303/udp"
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-X POST", "-H", "Content-Type:application/json", "-d", "'{\"jsonrpc\":\"2.0\", \"method\":\"eth_blockNumber\", \"params\":[], \"id\":123}'", "http://localhost:8545"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3

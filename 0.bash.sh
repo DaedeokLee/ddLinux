@@ -1,3 +1,4 @@
+#/bin/bash
 cat >> ~/.bashrc <<_EOF_
 
 ####
@@ -7,5 +8,5 @@ alias lsof='lsof'
 
 alias curl-json='curl -s -X POST -H "Content-Type:application/json" -d '
 _EOF_
-source ~/.bashrc
+sh ~/.bashrc
 

@@ -1,11 +1,11 @@
 version: '3'
 services:
   rsk-node:
-    build: rsk-node
+    build: .
     restart: on-failure
     hostname: rsk-node
-    links:
-      - rsk-stats
+    extra_hosts: 
+      - "rsk-stats:172.19.0.2"
     entrypoint: /root/start.sh
     command: '/usr/bin/supervisord'
     volumes:
@@ -13,13 +13,3 @@ services:
     ports:
       - "30303:30303"
       - "30303:30303/udp"
-      - "8545:8545"  
-  rsk-stats:
-    build: rsk-stats
-    restart: on-failure
-    environment:
-      - WS_SECRET=oracle
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "3000:3000"
