@@ -23,7 +23,7 @@ RUN \
   apt-get install -y curl git npm && \
   rm -rf /var/lib/apt/lists/* && \
   rm -f /etc/rsk/node.conf  && \
-  apt-get clean 
+  apt-get clean
 
 RUN \
   npm install -g n && \
@@ -31,20 +31,23 @@ RUN \
   npm install -g npm && \
   npm install -g pm2
 
+
 # Supervisod CONF
-COPY node.conf  /etc/rsk/node.conf 
+COPY node.conf  /etc/rsk/node.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN git clone https://github.com/cubedro/eth-net-intelligence-api.git
+RUN \
+  git clone https://github.com/cubedro/eth-net-intelligence-api.git && \
+  cd eth-net-intelligence-api && npm install && \
+  sed -i s/"WS_SECRET".*/"WS_SECRET\":"\"oracle\",/g app.json && \
+  sed -i s/"WS_SERVER".*/"WS_SERVER\":"\"13.209.19.67:3000\",/g app.json && \
+  sed -i s/"INSTANCE_NAME".*/"INSTANCE_NAME\":"\"$(hostname)\",/g app.json
+# Define default command.
 
-RUN cd eth-net-intelligence-api && npm install
-RUN sed -i s/"WS_SECRET".*/"WS_SECRET":oracle,/g eth-net-intelligence-api/app.json
-RUN sed -i s/"WS_SERVER".*/"WS_SERVER":$(rsk-stats),/g eth-net-intelligence-api/app.json
-
-COPY start.sh /root/start.sh
-RUN chmod +x /root/start.sh
-ENTRYPOINT /root/start.sh
+CMD ["sh", "-c", "pm2 start app.json && /usr/bin/supervisord"]
+WORKDIR /eth-net-intelligence-api/
 
 ## RPC, P2P
 EXPOSE 8545
 EXPOSE 30303
+
