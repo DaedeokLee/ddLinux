@@ -5,8 +5,6 @@
 # Pull base image.
 FROM ubuntu:latest
 
-MAINTAINER RSK Release <support@rsk.co>
-
 ARg DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
@@ -40,7 +38,7 @@ RUN \
   git clone https://github.com/cubedro/eth-net-intelligence-api.git && \
   cd eth-net-intelligence-api && npm install && \
   sed -i s/"WS_SECRET".*/"WS_SECRET\":"\"oracle\",/g app.json && \
-  sed -i s/"WS_SERVER".*/"WS_SERVER\":"\"13.209.19.67:3000\",/g app.json && \
+  sed -i s/"WS_SERVER".*/"WS_SERVER\":"\"rskstats_rsk_stats_1:3000\",/g app.json && \
   sed -i s/"INSTANCE_NAME".*/"INSTANCE_NAME\":"\"$(hostname)\",/g app.json
 # Define default command.
 

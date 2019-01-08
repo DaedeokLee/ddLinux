@@ -1,15 +1,18 @@
 version: '3'
 services:
-  rsk-node:
+  rsk_node:
     build: .
     restart: on-failure
-    hostname: rsk-node
-    extra_hosts: 
-      - "rsk-stats:172.19.0.2"
-    entrypoint: /root/start.sh
-    command: '/usr/bin/supervisord'
+    hostname: rsk_node
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "30303:30303"
-      - "30303:30303/udp"
+      - "8545,30303:8545,30303"
+      - "8545,30303:8545,30303/udp"
+    networks:
+      - rsk_network0        
+
+networks:
+  rsk_network0:
+    external: true
+
