@@ -11,12 +11,12 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "localhost",
+      "RPC_HOST"        : "13.209.19.67",
       "RPC_PORT"        : "8545",
-      "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "instance_name",
+      "LISTENING_PORT"  : "50505",
+      "INSTANCE_NAME"   : "RSK-NODE-2",
       "CONTACT_DETAILS" : "",
-      "WS_SERVER"       : "wss://rskstats:3000",
+      "WS_SERVER"       : "http://52.79.242.178:3000",
       "WS_SECRET"       : "oracle",
       "VERBOSITY"       : 2
     }

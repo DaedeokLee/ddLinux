@@ -1,17 +1,29 @@
 version: '3'
 services:
   rsk_node:
-    build: .
+    build: ./rsk-node
+    image: rsk_node:0.6.0
     restart: on-failure
     hostname: rsk_node
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "8545,30303:8545,30303"
-      - "8545,30303:8545,30303/udp"
+      - "8545:8545"
+      - "50505:50505"
+      - "50505:50505/udp"
     networks:
       - rsk_network0        
-
+  rsk-node-intel:
+    build: ./rsk-node-intel
+    image: rsk-node-intel:0.4
+    depends_on:
+      - rsk_node
+    restart: on-failure
+    hostname: rsk_node_intel
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - rsk_network0        
 networks:
   rsk_network0:
     external: true
