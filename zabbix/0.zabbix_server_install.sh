@@ -26,6 +26,8 @@
 #GRANT ALL on zabbix.* to zabbix@localhost IDENTIFIED BY 'password';
 #FLUSH PRIVILEGES;
 
+## 3.5 create schema
+#/usr/share/doc/zabbix-server-mysql/
 
 ## 4. conf file (DB information)
 #/etc/zabbix/zabbix_server.conf
@@ -35,3 +37,5 @@
 ##  5. sudo servce apache2 zabbix-server restart
 
 ## 6. http://localhost/zabbix 
+
+## 7. Admin/zabbix
