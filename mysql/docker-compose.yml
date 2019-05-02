@@ -1,16 +1,16 @@
-version: '2.1'
+version: '2'
 services:
   rsk-trx-db:
-    container_name: rsk-trx-db
-    image: mysql
+    container_name: fit-db
+    image: mariadb 
     restart: always
     volumes:
-      - ${HOME}/rsk-trx-db/datadir:/var/lib/mysql
+      - ${HOME}/fit-db/datadir:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: "rsk"
-      MYSQL_USER: "rsk"
+      MYSQL_DATABASE: "fit"
+      MYSQL_USER: "fit"
       MYSQL_PASSWORD: "oracle"
       MYSQL_ROOT_PASSWORD: "oracle"
 
