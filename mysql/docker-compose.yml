@@ -1,16 +1,18 @@
-version: '2'
+version: '3.7'
 services:
-  rsk-trx-db:
-    container_name: fit-db
-    image: mariadb 
+  wdl:
+    container_name: wdl
+    image: mysql:8.0
     restart: always
     volumes:
-      - ${HOME}/fit-db/datadir:/var/lib/mysql
+      - ./wdl/data:/var/lib/mysql
+      - ./wdl/conf.d:/etc/mysql/conf.d/
+      - ./wdl/log:/var/log/mysql
+      - ./wdl/backup:/backup
     ports:
-      - 3306:3306
+      - 13306:3306
     environment:
-      MYSQL_DATABASE: "fit"
-      MYSQL_USER: "fit"
+      MYSQL_DATABASE: wdl
+      MYSQL_USER: wdl
       MYSQL_PASSWORD: "oracle"
       MYSQL_ROOT_PASSWORD: "oracle"
-
